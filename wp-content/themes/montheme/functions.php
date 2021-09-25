@@ -3,6 +3,9 @@ function montheme_supports(){
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
     //on rajoute le post-thumbnails afin de poster une image avec nos articles lors de la création de ces derniere avec letableau de bord -> créer une article au sein de la barré latérale droite
+    add_theme_support('menus');
+    //on ajoute la gestion des menus -> sera affiché dans le tableau de bord
+    
 }
 function montheme_register_assets(){
     //on créé ici notre fonction qui chargera bootstrap avec son adresse CDN
@@ -16,7 +19,6 @@ function montheme_register_assets(){
     wp_register_script('popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', [], false, true);
     wp_deregister_script('jquery');
     wp_register_script('jquery', 'https://code.jquery.com/jquery-3.3.1.slim.min.js', [],false, true);
-    
     //puis on finaliser avec ce code pour le script de bootstrap -> IMPORTANT automatiquement il va détecter que bootstrap dépent de popper et de jquery, il va charger ces scripts dans le bon ordre
     wp_enqueue_script('bootstrap');
 }
