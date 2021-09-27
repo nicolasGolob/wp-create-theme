@@ -4,11 +4,10 @@ function montheme_supports(){
     add_theme_support('post-thumbnails');
     //on rajoute le post-thumbnails afin de poster une image avec nos articles lors de la création de ces derniere avec letableau de bord -> créer une article au sein de la barré latérale droite
     add_theme_support('menus');
-    //on ajoute la gestion des menus -> sera affiché dans le tableau de bord -> add_theme_support -> permettra l'activation des supoorts des menus
+    //permettra de specifier quel menu on souhaite afficher -> on  ajoute la gestion des menus -> sera affiché dans le tableau de bord -> add_theme_support -> permettra l'activation des supoorts des menus
     register_nav_menu('header', 'En tête du menu');
-    //permet de créer un menu + 'création de 'En-tête de menu' 
+    //permet de créer un menu + une description se qui sera affiché au niveau du back office -> 'création de 'En-tête de menu' 
     register_nav_menu('footer', 'Pied de page');
-
 }
 function montheme_register_assets(){
     //on créé ici notre fonction qui chargera bootstrap avec son adresse CDN
@@ -43,13 +42,15 @@ function montheme_title_separator(){
 add_filter('document_title_separator', 'montheme_title_separator');
 //on se branche sur la fonction 'document_title_separator puis on lui rattache la fonction 'mon_theme_title_separator'
 
-//avec le code ci-dessous on aura la bonne apparence voulu
+//avec le code ci-dessous on aura l'apparence voulu
 function montheme_menu_class($classes){
+    //$classes que l'on retrouve dans un fichier de wp 'class-walker-nav-menu'
     $classes[]= 'nav-item';
     return $classes;
 }
 add_filter('nav_menu_css_class', 'montheme_menu_class');
 
+//ci-dessous encore un walker personnalisé
 function montheme_menu_link_class($attrs){
     $attrs['class']= 'nav-link';
     return $attrs;

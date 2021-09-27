@@ -15,8 +15,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <?php wp_nav_menu([
                 'theme_location' => 'header',
+                //issu de la doc pour enregistrer l'emplacement du theme
                 'container' => false,
+                //container : false -> permettra de retirer le container et de ne plus avoir cette div autour de l'ul
                 'menu_class' => 'navbar-nav mr-auto'
+                //navbar-nav mr-auto afin de rajouter cette class
                 ]) ?>
             <!--  au dessus on précise que le theme location à utiliser est le header soit notre page personnalisée -->
             <!-- <ul class="navbar-nav mr-auto">
