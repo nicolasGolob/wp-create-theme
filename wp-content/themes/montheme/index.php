@@ -4,7 +4,7 @@
     <?php while(have_posts()): the_post(); ?>  
         <div class="col-sm-4">
             <div class="card">
-                <?php the_post_thumbnail('post_thumnail', ['class' => 'card-img-top', 'alt' =>'', 'style' => 'height : auto;']) ?>
+                <?php the_post_thumbnail('card-header', ['class' => 'card-img-top', 'alt' =>'', 'style' => 'height : auto;']) ?>
                 <!-- on lie ci-dessus l'image à la class de bootstrap ci-dessous -->
                 <!-- alt = vide car cette image n'est pas essentielle pour la compréhension de notre page -->
                 <div class="card-body">

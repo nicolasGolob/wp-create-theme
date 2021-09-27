@@ -8,7 +8,14 @@ function montheme_supports(){
     register_nav_menu('header', 'En tête du menu');
     //permet de créer un menu + une description se qui sera affiché au niveau du back office -> 'création de 'En-tête de menu' 
     register_nav_menu('footer', 'Pied de page');
+
+    add_image_size('post-thumbnail', 350, 215, true);
+    //on créer ci-dessus ce code pour enregistrer une nouvelle taille d'image -> dès que l'on envoie une image sera format sera automatiquement généré
+    remove_image_size('medium');
+    add_image_size('medium', 500, 500);
+    //aussi peut inscrire un format par défaut pour toutes les images 'medium'
 }
+
 function montheme_register_assets(){
     //on créé ici notre fonction qui chargera bootstrap avec son adresse CDN
     wp_register_style('bootstrap','https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css');
