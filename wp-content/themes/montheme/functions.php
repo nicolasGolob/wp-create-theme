@@ -30,6 +30,7 @@ function montheme_register_assets(){
     wp_register_script('jquery', 'https://code.jquery.com/jquery-3.3.1.slim.min.js', [],false, true);
     //puis on finaliser avec ce code pour le script de bootstrap -> IMPORTANT automatiquement il va détecter que bootstrap dépent de popper et de jquery, il va charger ces scripts dans le bon ordre
     wp_enqueue_script('bootstrap');
+
 }
 add_action('after_setup_theme', 'montheme_supports');
 //after_setup_theme = Se déclenche une fois le thème chargé avec le clef 'bootstrap'
@@ -86,3 +87,16 @@ function montheme_pagination(){
         echo'</ul>';
     echo'</nav>';
 }
+
+function montheme_add_custom_box(){
+    add_meta_box('montheme_sponso', 'Sponsoring', 'montheme_render_sponso_box', 'post');
+    // on ajoute le hook 'add_meta_box' -> on lui donne un id'montheme_sponso' + on lui donne un titre 'Sponsoring' + 'on lui donne une fonction qui sera appelé pour générer cette metabox + en 4eme arguments on peut spécifier sur quel écran peuvent apparaitrent ce systeme dans notre cas on veut cela sur la gestion/création des articles
+}
+
+function montheme_render_sponso_box(){
+    echo'Hi everyone';
+    // afin de constater que cela fonctionne bien
+}
+
+add_action('add_meta_boxes', 'montheme_add_custom_box');
+// on créer notre action avec une fonction wp + son nom associé
