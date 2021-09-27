@@ -89,14 +89,16 @@ function montheme_pagination(){
 }
 
 function montheme_add_custom_box(){
-    add_meta_box('montheme_sponso', 'Sponsoring', 'montheme_render_sponso_box', 'post');
+    add_meta_box('montheme_sponso', 'Sponsoring', 'montheme_render_sponso_box', 'post', 'side');
     // on ajoute le hook 'add_meta_box' -> on lui donne un id'montheme_sponso' + on lui donne un titre 'Sponsoring' + 'on lui donne une fonction qui sera appelé pour générer cette metabox + en 4eme arguments on peut spécifier sur quel écran peuvent apparaitrent ce systeme dans notre cas on veut cela sur la gestion/création des articles
 }
-
 function montheme_render_sponso_box(){
-    echo'Hi everyone';
-    // afin de constater que cela fonctionne bien
+    ?>
+        <input type="hidden" value="0" name="montheme_sponso">
+        <!-- dans le cas ou la personne n'a pas cocher cette case -->
+        <input type="checkbox" value="1" name="montheme_sponso">
+        <label for="montheme_sponso">Cet article est-il sponsorisé?</label> 
+   <?php
 }
-
 add_action('add_meta_boxes', 'montheme_add_custom_box');
 // on créer notre action avec une fonction wp + son nom associé
