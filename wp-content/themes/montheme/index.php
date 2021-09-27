@@ -19,6 +19,8 @@
         </div>
     </div>
     <?php endwhile ?>
+    <?php montheme_pagination()?>
+
 <?php else:?>
     <h1> Pas d'articles </h1>
 <?php endif; ?>

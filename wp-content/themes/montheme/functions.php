@@ -56,3 +56,26 @@ function montheme_menu_link_class($attrs){
     return $attrs;
 }
 add_filter('nav_menu_link_attributes', 'montheme_menu_link_class');
+
+function montheme_pagination(){
+    echo'<nav aria-label="Pagination" class="my-4">';
+        echo'<ul class="pagination">';
+        $pages = paginate_links(['type' => 'array']);
+        if($pages == null){
+            // on rajoute cette condition dans le cas ou il n'aura rien besoin de générer dans le cas d'une pagination
+            return;
+        }
+            foreach($pages as $page){
+                //si besoin on peut rajouter cette partie active pour informé avec une couleur le changement de page/article de l'utilisateur
+                $active = strpos($page, 'current') !== false;
+                $class = 'page-item';
+                if($active){
+                    $class .= 'active';
+                }
+                echo'<li class="' . $class . '">';
+                echo str_replace('page-numbers', 'page-link', $page);
+                echo'</li>';
+            }
+        echo'</ul>';
+    echo'</nav>';
+}
