@@ -88,41 +88,7 @@ function montheme_pagination(){
     echo'</nav>';
 }
 
-function montheme_add_custom_box(){
-    add_meta_box('montheme_sponso', 'Sponsoring', 'montheme_render_sponso_box', 'post', 'side');
-    // on ajoute le hook 'add_meta_box' -> on lui donne un id'montheme_sponso' + on lui donne un titre 'Sponsoring' + 'on lui donne une fonction qui sera appelé pour générer cette metabox + en 4eme arguments on peut spécifier sur quel écran peuvent apparaitrent ce systeme dans notre cas on veut cela sur la gestion/création des articles + 5eme 'side' arguments pour placer ce syteme de maniere latérale 
-}
-function montheme_render_sponso_box(){
-    ?>
-        <input type="hidden" value="0" name="montheme_sponso">
-        <!-- dans le cas ou la personne n'a pas cocher cette case -->
-        <input type="checkbox" value="1" name="montheme_sponso">
-        <label for="montheme_sponso">Cet article est-il sponsorisé?</label> 
-   <?php
-}
-add_action('add_meta_boxes', 'montheme_add_custom_box');
-// on créer notre action avec une fonction wp + son nom associé
+require_once('metaboxes/sponso.php');
+SponsoMetaBox::register();
 
-// function montheme_save_sponso($post_id){
-//     //pour test
-//     if(array_key_exists('montheme_sponso', $_POST)){
-//         var_dump($_POST);
-//         die();
-//     }
-// }
-// add_action('save_post', ‘montheme_save_sponso');
 
-function montheme_save_sponso($post_id){
-    //cette fonction prendra en argument un article $post_id
-    if(array_key_exists('montheme_sponso', $_POST)){
-        //rappel : montheme_sponso -> ref de la fonction montheme_render_sponso_box
-        if($_POST['montheme_sponso'] === '0'){
-            delete_post_meta($post_id, 'montheme_sponso');
-             //pour eviter que cette clef entre en colissio ave d'autre on va la spécifier via 'montheme_sponso'
-        }else{
-            update_post_meta($post_id, 'montheme_sponso', 1);
-            //update_post_meta -> permet de mettre à jour la donnée si elle existe deja et d'en ajouter une si elle n'existe pas -> 1 pour spécifier que cet article est sponsorisé
-        }
-    }
-}
-add_action('save_post', 'montheme_save_sponso');
